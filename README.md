@@ -29,7 +29,7 @@ to work, you will need to ensure the "user_read" scope is used.
 
 ```php
 if (isset($_GET['code']) && $_GET['code']) {
-    $token = $this->provider->getAccessToken("authorizaton_code", [
+    $token = $this->provider->getAccessToken("authorization_code", [
         'code' => $_GET['code']
     ]);
 
