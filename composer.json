@@ -10,6 +10,9 @@
     "require": {
         "league/oauth2-client": "0.7.*"
     },
+    "suggest": {
+        "illuminate/support": "Laravel framework integration"
+    },
     "autoload": {
         "psr-4": {
             "Depotwarehouse\\OAuth2\\Client\\Twitch\\": "src/"
