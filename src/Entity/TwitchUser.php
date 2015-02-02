@@ -28,7 +28,7 @@ class TwitchUser
         $this->bio = $attributes['bio'];
         $this->email = $attributes['email'];
         $this->partnered = $attributes['partnered'];
-        $this->username = $attributes['username'];
+        $this->username = $attributes['name'];
     }
 
     /**
