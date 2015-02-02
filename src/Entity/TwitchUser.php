@@ -6,6 +6,8 @@ class TwitchUser
 {
 
     /** @var  string */
+    protected $username;
+    /** @var  string */
     protected $display_name;
     /** @var  int */
     protected $id;
@@ -26,6 +28,7 @@ class TwitchUser
         $this->bio = $attributes['bio'];
         $this->email = $attributes['email'];
         $this->partnered = $attributes['partnered'];
+        $this->username = $attributes['username'];
     }
 
     /**
@@ -84,6 +87,14 @@ class TwitchUser
     public function isPartnered()
     {
         return $this->partnered;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
     }
 
 }
