@@ -47,6 +47,9 @@ if (isset($_GET['code']) && $_GET['code']) {
 Laravel Framework Integration
 ------------------------------
 
+> Note: This package is currently only compatible with Laravel 4. A Laravel 5 update should be coming soon. Feel free to PR if 
+you already have one.
+
 This package includes Laravel framework integration if you need it. Simply require it as normal in your Laravel application,
 and add the Service Provider `Depotwarehouse\OAuth2\Client\Twitch\FrameworkIntegration\Laravel\TwitchOAuth2ServiceProvider` to your `config/app.php`.
 
