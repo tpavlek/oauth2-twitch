@@ -56,3 +56,7 @@ details in the `config/depotwarehouse/oauth2-twitch/config.php` file that is gen
 This will register bindings in the IoC container for the Twitch Provider, so you can simply typehint the
 `\Depotwarehouse\OAuth2\Client\Twitch\Provider\Twitch` in your controller methods and it will yield a properly configured
 instance.
+
+Testing
+---------
+You can quickly test that 

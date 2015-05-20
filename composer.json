@@ -4,11 +4,11 @@
     "authors": [
         {
             "name": "Troy Pavlek",
-            "email": "troy@depotwarehouse.net"
+            "email": "troy@tpavlek.me"
         }
     ],
     "require": {
-        "league/oauth2-client": "~0.10.0",
+        "league/oauth2-client": "~0.11.0",
         "illuminate/contracts": "~5.0"
     },
     "suggest": {
