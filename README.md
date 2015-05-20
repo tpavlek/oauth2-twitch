@@ -59,4 +59,12 @@ instance.
 
 Testing
 ---------
-You can quickly test that 
+You can quickly test that the package works by adding client information (from your twitch.tv account) to `config/config.php`
+and then starting up a php server
+
+```bash
+cd test/
+php -S localhost:8000
+```
+
+Now, navigating to `http://localhost:8000` should present an OAuth flow and then dump your user information.
