@@ -101,8 +101,12 @@ class TwitchUser
     }
 
     /**
+     * Will return a url to the profile image for the user's account.
+     * If the user has not setup a profile image an empty string
+     * is returned from the Twitch API
+     *
      * @return string
-    */
+     */
     public function getLogo()
     {
         return $this->logo;
