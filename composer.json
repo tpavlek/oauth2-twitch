@@ -1,10 +1,14 @@
 {
-    "name": "depotwarehouse/oauth2-twitch",
+    "name": "nicks451/oauth2-twitch",
     "description": "A Twitch provider for league/oauth2-client",
     "authors": [
         {
             "name": "Troy Pavlek",
             "email": "troy@tpavlek.me"
+        },
+        {
+            "name": "Nick Snyder",
+            "email": "nick@nicksnyder.io"
         }
     ],
     "require": {

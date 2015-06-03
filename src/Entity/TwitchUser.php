@@ -19,6 +19,8 @@ class TwitchUser
     protected $email;
     /** @var  bool */
     protected $partnered;
+    /** @var string */
+    protected $logo;
 
     public function __construct(array $attributes = array())
     {
@@ -29,6 +31,7 @@ class TwitchUser
         $this->email = $attributes['email'];
         $this->partnered = $attributes['partnered'];
         $this->username = $attributes['name'];
+        $this->logo = $attributes['logo'];
     }
 
     /**
@@ -97,4 +100,11 @@ class TwitchUser
         return $this->username;
     }
 
+    /**
+     * @return string
+    */
+    public function getLogo()
+    {
+        return $this->logo;
+    }
 }
