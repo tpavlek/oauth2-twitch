@@ -1,7 +1,12 @@
 {
-    "name": "depotwarehouse/oauth2-twitch",
+    "name": "0plus1/oauth2-twitch",
     "description": "A Twitch provider for league/oauth2-client",
+    "license": "MIT",
     "authors": [
+        {
+            "name": "Davide Gaido",
+            "email": "davide@0plus1.com"
+        },
         {
             "name": "Troy Pavlek",
             "email": "troy@tpavlek.me"
