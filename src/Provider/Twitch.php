@@ -5,60 +5,109 @@ namespace Depotwarehouse\OAuth2\Client\Twitch\Provider;
 use Depotwarehouse\OAuth2\Client\Twitch\Entity\TwitchUser;
 use League\OAuth2\Client\Provider\AbstractProvider;
 use League\OAuth2\Client\Token\AccessToken;
+use Psr\Http\Message\ResponseInterface;
 
 class Twitch extends AbstractProvider
 {
 
-    public $scopeSeparator = ' ';
+    /**
+     * Api domain
+     *
+     * @var string
+     */
+    public $apiDomain = 'https://api.twitch.tv';
 
-    public $scopes = [ "user_read" ];
+    public $scopes = [ 'user_read' ];
 
     /**
-     * Get the URL that this provider uses to begin authorization.
+     * Get authorization url to begin OAuth flow
      *
      * @return string
      */
-    public function urlAuthorize()
+    public function getBaseAuthorizationUrl()
     {
-        return "https://api.twitch.tv/kraken/oauth2/authorize";
+        return $this->apiDomain.'/kraken/oauth2/authorize';
     }
 
     /**
-     * Get the URL that this provider users to request an access token.
+     * Get access token url to retrieve token
+     *
+     * @param  array $params
      *
      * @return string
      */
-    public function urlAccessToken()
+    public function getBaseAccessTokenUrl(array $params)
     {
-        return "https://api.twitch.tv/kraken/oauth2/token";
+        return $this->apiDomain.'/kraken/oauth2/token';
     }
 
     /**
-     * Get the URL that this provider uses to request user details.
+     * Get provider url to fetch user details
      *
-     * Since this URL is typically an authorized route, most providers will require you to pass the access_token as
-     * a parameter to the request. For example, the google url is:
+     * @param  AccessToken $token
      *
-     * 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token='.$token
+     * @return string
+     */
+    public function getResourceOwnerDetailsUrl(AccessToken $token)
+    {
+        return $this->getAuthenticatedUrlForEndpoint('/kraken/user', $token);
+    }
+
+    /**
+     * Get the full uri with appendend oauth_token query string
      *
+     * @param string $endpoint | with leading slash
      * @param AccessToken $token
      * @return string
      */
-    public function urlUserDetails(AccessToken $token)
+    public function getAuthenticatedUrlForEndpoint($endpoint, AccessToken $token)
     {
-        return "https://api.twitch.tv/kraken/user?oauth_token=" . $token;
+        return $this->apiDomain.$endpoint.'?oauth_token='.$token->getToken();
     }
 
     /**
-     * Given an object response from the server, process the user details into a format expected by the user
-     * of the client.
+     * Returns the string that should be used to separate scopes when building
+     * the URL for requesting an access token.
      *
-     * @param object $response
-     * @param AccessToken $token
-     * @return mixed
+     * @return string Scope separator
      */
-    public function userDetails($response, AccessToken $token)
+    protected function getScopeSeparator()
+    {
+        return ' ';
+    }
+
+    /**
+     * Get the default scopes used by this provider.
+     *
+     * This should not be a complete list of all scopes, but the minimum
+     * required for the provider user interface!
+     *
+     * @return array
+     */
+    protected function getDefaultScopes()
+    {
+        return $this->scopes;
+    }
+
+    /**
+     * @param ResponseInterface $response
+     * @param array|string $data
+     */
+    protected function checkResponse(ResponseInterface $response, $data)
+    {
+        // TODO: everything
+    }
+
+    /**
+     * Generate a user object from a successful user details request.
+     *
+     * @param array $response
+     * @param AccessToken $token
+     * @return TwitchUser
+     */
+    protected function createResourceOwner(array $response, AccessToken $token)
     {
         return new TwitchUser((array)$response);
     }
+
 }
