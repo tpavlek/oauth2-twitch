@@ -4,6 +4,7 @@ namespace Depotwarehouse\OAuth2\Client\Twitch\Provider;
 
 use Depotwarehouse\OAuth2\Client\Twitch\Entity\TwitchUser;
 use League\OAuth2\Client\Provider\AbstractProvider;
+use Depotwarehouse\OAuth2\Client\Twitch\Provider\Exception\TwitchIdentityProviderException;
 use League\OAuth2\Client\Token\AccessToken;
 use Psr\Http\Message\ResponseInterface;
 
@@ -95,7 +96,14 @@ class Twitch extends AbstractProvider
      */
     protected function checkResponse(ResponseInterface $response, $data)
     {
-        // TODO: everything
+        if ($response->getStatusCode() >= 400)
+        {
+            throw TwitchIdentityProviderException::clientException($response, $data);
+        }
+        elseif (isset($data['error']))
+        {
+            throw TwitchIdentityProviderException::oauthException($response, $data);
+        }
     }
 
     /**
