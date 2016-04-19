@@ -1,27 +1,48 @@
-<?php
+<?php namespace Depotwarehouse\OAuth2\Client\Twitch\Entity;
 
-namespace Depotwarehouse\OAuth2\Client\Twitch\Entity;
-
+/**
+ * Class TwitchUser
+ * @package Depotwarehouse\OAuth2\Client\Twitch\Entity
+ */
 class TwitchUser
 {
-
-    /** @var  string */
+    /**
+     * @var string
+     */
     protected $username;
-    /** @var  string */
+    /**
+     * @var  string
+     */
     protected $display_name;
-    /** @var  int */
+    /**
+     * @var  int
+     */
     protected $id;
-    /** @var  string */
+    /**
+     * @var  string
+     */
     protected $type;
-    /** @var  string */
+    /**
+     * @var  string
+     */
     protected $bio;
-    /** @var  string */
+    /**
+     * @var  string
+     */
     protected $email;
-    /** @var  bool */
+    /**
+     * @var  bool
+     */
     protected $partnered;
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $logo;
 
+    /**
+     * TwitchUser constructor.
+     * @param array $attributes
+     */
     public function __construct(array $attributes = array())
     {
         $this->id = $attributes['_id'];
