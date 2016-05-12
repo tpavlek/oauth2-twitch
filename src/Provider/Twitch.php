@@ -55,7 +55,7 @@ class Twitch extends AbstractProvider
     }
 
     /**
-     * Get the full uri with appendend oauth_token query string
+     * Get the full uri with appended oauth_token query string
      *
      * @param string $endpoint | with leading slash
      * @param AccessToken $token
@@ -64,6 +64,17 @@ class Twitch extends AbstractProvider
     public function getAuthenticatedUrlForEndpoint($endpoint, AccessToken $token)
     {
         return $this->apiDomain.$endpoint.'?oauth_token='.$token->getToken();
+    }
+
+    /**
+     * Get the full urls that do not require authentication
+     *
+     * @param $endpoint
+     * @return string
+     */
+    public function getUrlForEndpoint($endpoint)
+    {
+        return $this->apiDomain.$endpoint;
     }
 
     /**
