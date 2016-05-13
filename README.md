@@ -1,7 +1,7 @@
 Twitch provider for league/oauth2-client
 =========================================
 
-This is a package to integrate Battle.net authentication with the [OAuth2 client library](https://github.com/thephpleague/oauth2-client) by
+This is a package to integrate twitch.tv authentication with the [OAuth2 client library](https://github.com/thephpleague/oauth2-client) by
 [The League of Extraordinary Packages](http://thephpleague.com).
 
 To install, use composer:
