@@ -102,8 +102,11 @@ class Twitch extends AbstractProvider
     }
 
     /**
+     * Checks response
+     *
      * @param ResponseInterface $response
      * @param array|string $data
+     * @throws \League\OAuth2\Client\Provider\Exception\IdentityProviderException
      */
     protected function checkResponse(ResponseInterface $response, $data)
     {
