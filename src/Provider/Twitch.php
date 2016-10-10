@@ -132,4 +132,14 @@ class Twitch extends AbstractProvider
         return new TwitchUser((array)$response);
     }
 
+    /**
+     * Since August 8th, 2016 Kraken requires a Client-ID header to be sent
+     *
+     * @return array
+     */
+    protected function getDefaultHeaders()
+    {
+        return ['Client-ID' => $this->clientId];
+    }
+
 }
