@@ -139,7 +139,20 @@ class Twitch extends AbstractProvider
      */
     protected function getDefaultHeaders()
     {
-        return ['Client-ID' => $this->clientId];
+        return ['Client-ID' => $this->clientId, 'Accept' => 'application/vnd.twitchtv.v5+json'];
     }
+
+    /**
+     * Adds token to headers
+     *
+     * @param AccessToken $token
+     * @return array
+     */
+    protected function getAuthorizationHeaders($token = null) {
+        if(isset($token))
+            return ['Authorization' => 'OAuth '.$token->getToken()];
+        return [];
+    }
+
 
 }
