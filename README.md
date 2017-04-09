@@ -24,7 +24,7 @@ $provider = new \Depotwarehouse\OAuth2\Client\Twitch\Provider\Twitch([
 You can also optionally add a `scopes` key to the array passed to the constructor. The available scopes are documented
 on the [Twitch API Documentation](https://github.com/justintv/Twitch-API/blob/master/authentication.md).
 
-> Note: The provider uses the "user_read" scope by default. If you pass other scopes, and want the ->getUserDetails() method
+> Note: The provider uses the "user_read" scope by default. If you pass other scopes, and want the ->getResourceOwner() method
 to work, you will need to ensure the "user_read" scope is used.
 
 ```php
@@ -34,7 +34,7 @@ if (isset($_GET['code']) && $_GET['code']) {
     ]);
 
     // Returns an instance of Depotwarehouse\OAuth2\Client\Twitch\Entity\TwitchUser
-    $user = $this->provider->getUserDetails($token);
+    $user = $this->provider->getResourceOwner($token);
     
     $user->getDisplayName();
     $user->getId()
