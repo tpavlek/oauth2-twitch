@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "league/oauth2-client": "^2.2"
+        "league/oauth2-client": "^2.4"
     },
     "autoload": {
         "psr-4": {
