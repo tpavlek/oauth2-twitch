@@ -9,6 +9,11 @@ class TwitchUser
     /**
      * @var string
      */
+    protected $name;
+    
+    /**
+     * @var string
+     */
     protected $username;
     /**
      * @var  string
@@ -51,7 +56,7 @@ class TwitchUser
         $this->bio = $attributes['bio'];
         $this->email = $attributes['email'];
         $this->partnered = $attributes['partnered'];
-        $this->username = $attributes['name'];
+        $this->name = $this->username = $attributes['name'];
         $this->logo = $attributes['logo'];
     }
 
