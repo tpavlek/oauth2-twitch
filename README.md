@@ -44,19 +44,6 @@ if (isset($_GET['code']) && $_GET['code']) {
     $user->getPartnered();
 ```
 
-Laravel Framework Integration
-------------------------------
-
-This package includes Laravel framework integration if you need it. Simply require it as normal in your Laravel application,
-and add the Service Provider `Depotwarehouse\OAuth2\Client\Twitch\FrameworkIntegration\Laravel\TwitchOAuth2ServiceProvider` to your `config/app.php`.
-
-Next, publish the configuration with `php artisan vendor:publish`, and fill out your client
-details in the `config/depotwarehouse/oauth2-twitch/config.php` file that is generated.
-
-This will register bindings in the IoC container for the Twitch Provider, so you can simply typehint the
-`\Depotwarehouse\OAuth2\Client\Twitch\Provider\Twitch` in your controller methods and it will yield a properly configured
-instance.
-
 Testing
 ---------
 You can quickly test that the package works by adding client information (from your twitch.tv account) to `config/config.php`
