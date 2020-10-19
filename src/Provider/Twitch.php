@@ -12,11 +12,32 @@ class Twitch extends AbstractProvider
 {
 
     /**
-     * Api domain
+     * The domain for authorization.
      *
      * @var string
      */
-    public $apiDomain = 'https://api.twitch.tv';
+    public $authorizationDomain = 'https://id.twitch.tv';
+
+    /**
+     * The path for authorization.
+     *
+     * @var string
+     */
+    public $authorizationPath = '/oauth2';
+
+    /**
+     * The domain with resources.
+     *
+     * @var string
+     */
+    public $resourceDomain = 'https://api.twitch.tv';
+
+    /**
+     * The path with resources.
+     *
+     * @var string
+     */
+    public $resourcePath = '/helix';
 
     public $scopes = [ 'user_read' ];
 
@@ -27,7 +48,7 @@ class Twitch extends AbstractProvider
      */
     public function getBaseAuthorizationUrl()
     {
-        return $this->apiDomain.'/kraken/oauth2/authorize';
+        return $this->authorizationDomain.$this->authorizationPath.'/authorize';
     }
 
     /**
@@ -39,7 +60,7 @@ class Twitch extends AbstractProvider
      */
     public function getBaseAccessTokenUrl(array $params)
     {
-        return $this->apiDomain.'/kraken/oauth2/token';
+        return $this->authorizationDomain.$this->authorizationPath.'/token';
     }
 
     /**
@@ -51,7 +72,7 @@ class Twitch extends AbstractProvider
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-        return $this->getAuthenticatedUrlForEndpoint('/kraken/user', $token);
+        return $this->resourceDomain.$this->resourcePath.'/users?oauth_token='.$token->getToken();
     }
 
     /**
@@ -63,7 +84,7 @@ class Twitch extends AbstractProvider
      */
     public function getAuthenticatedUrlForEndpoint($endpoint, AccessToken $token)
     {
-        return $this->apiDomain.$endpoint.'?oauth_token='.$token->getToken();
+        return $this->authorizationDomain.$endpoint.'?oauth_token='.$token->getToken();
     }
 
     /**
@@ -74,7 +95,7 @@ class Twitch extends AbstractProvider
      */
     public function getUrlForEndpoint($endpoint)
     {
-        return $this->apiDomain.$endpoint;
+        return $this->authorizationDomain.$endpoint;
     }
 
     /**
@@ -139,7 +160,7 @@ class Twitch extends AbstractProvider
      */
     protected function getDefaultHeaders()
     {
-        return ['Client-ID' => $this->clientId, 'Accept' => 'application/vnd.twitchtv.v5+json'];
+        return ['Client-ID' => $this->clientId];
     }
 
     /**
@@ -149,9 +170,9 @@ class Twitch extends AbstractProvider
      * @return array
      */
     protected function getAuthorizationHeaders($token = null) {
-        if(isset($token))
-            return ['Authorization' => 'OAuth '.$token->getToken()];
-        return [];
+      return $token ? [
+        'Authorization' => 'Bearer ' . $token->getToken(),
+      ] : [];
     }
 
 

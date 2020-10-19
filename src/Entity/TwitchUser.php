@@ -1,10 +1,12 @@
 <?php namespace Depotwarehouse\OAuth2\Client\Twitch\Entity;
 
+use League\OAuth2\Client\Provider\ResourceOwnerInterface;
+
 /**
  * Class TwitchUser
  * @package Depotwarehouse\OAuth2\Client\Twitch\Entity
  */
-class TwitchUser
+class TwitchUser implements ResourceOwnerInterface
 {
     /**
      * @var string
@@ -50,14 +52,15 @@ class TwitchUser
      */
     public function __construct(array $attributes = array())
     {
-        $this->id = $attributes['_id'];
+        // See https://dev.twitch.tv/docs/api/reference#get-users.
+        $this->id = (int) $attributes['id'];
         $this->display_name = $attributes['display_name'];
         $this->type = $attributes['type'];
-        $this->bio = $attributes['bio'];
+        $this->bio = $attributes['description'];
         $this->email = $attributes['email'];
-        $this->partnered = $attributes['partnered'];
-        $this->name = $this->username = $attributes['name'];
-        $this->logo = $attributes['logo'];
+        $this->partnered = $this->type === 'partnered';
+        $this->name = $this->username = $attributes['login'];
+        $this->logo = $attributes['profile_image_url'];
     }
 
     /**
