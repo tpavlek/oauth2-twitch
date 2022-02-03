@@ -1,5 +1,5 @@
 {
-    "name": "tpavlek/oauth2-twitch",
+    "name": "depotwarehouse/oauth2-twitch",
     "description": "A Twitch provider for league/oauth2-client",
     "license": "MIT",
     "authors": [
